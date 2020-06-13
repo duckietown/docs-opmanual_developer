@@ -1,11 +1,5 @@
 # Architecture API {#sec:architecture_api level=sec status=beta}
 
-<div class='requirements' markdown="1">
-Requires: Full understanding of the [Developer Basics](https://docs.duckietown.org/daffy/downloads/opmanual_developer/docs-opmanual_developer/builds/35/opmanual_developer/out/developer_basics.html)
-Recommended: Full understanding of how [demos](https://docs.duckietown.org/daffy/downloads/opmanual_duckiebot/docs-opmanual_duckiebot/builds/762/opmanual_duckiebot/out/demos.html) are currently launched in Duckietown
-Results: a functioning API to control the architecture of fleet and robot in Duckietown using simplified HTTP commands
-</div>
-
 Author: Johannes Boghaert - ETHZ
 
 Maintainers: Johannes Boghaert - ETHZ, Andrea F. Daniele - TTIC
