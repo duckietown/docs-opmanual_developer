@@ -150,29 +150,29 @@ With a successful launch of the architecture API module and inclusion of the nec
     <span>Default response for single device control</span>
     <span>`/device/configuration/list`</span>
     <span>List possible configurations for the device in use</span>
-    <span>`/device/configuration/info/<configuration>`</span>
+    <span>`/device/configuration/info/config`</span>
     <span>Detailed information on a specific configuration</span>
-    <span>`/device/configuration/set/<configuration>`</span>
+    <span>`/device/configuration/set/config`</span>
     <span>Launch a specific configuration on the device in use</span>
     <span>`/device/module/list`</span>
     <span>List possible modules</span>
-    <span>`/device/module/info/<module>`</span>
+    <span>`/device/module/info/mod`</span>
     <span>Detailed information on a specific module</span>
-    <span>`/device/monitor/<ETag>`</span>
+    <span>`/device/monitor/ETag`</span>
     <span>Monitor the progress of the request</span>
     <span></span>
     <span></span>
     <span>`/fleet/`</span>
     <span>Default response for a fleet controlling main Duckietown device</span>
-    <span>`/fleet/configuration/list/<fleet>`</span>
+    <span>`/fleet/configuration/list/fleet`</span>
     <span>List possible configurations for the fleet and device in use</span>
-    <span>`/fleet/configuration/info/<configuration>`</span>
+    <span>`/fleet/configuration/info/config`</span>
     <span>Detailed information on a specific configuration for the fleet and device in use</span>
-    <span>`/fleet/configuration/set/<configuration>/<fleet>`</span>
+    <span>`/fleet/configuration/set/config/fleet`</span>
     <span>Launch a specific configuration on the fleet and device in use</span>
-    <span>`/fleet/monitor/<ETag>/<fleet>`</span>
+    <span>`/fleet/monitor/ETag/fleet`</span>
     <span>Monitor the progress of the request for fleet and device in use</span>
-    <span>`/fleet/info/<fleet>`</span>
+    <span>`/fleet/info/fleet`</span>
     <span>Information on the devices that are specified in the fleet file</span>
   </col2>
   <figcaption>Architecture API endpoints</figcaption>
