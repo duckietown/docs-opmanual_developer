@@ -4,7 +4,7 @@ Author: Johannes Boghaert - ETHZ
 
 Maintainer: Johannes Boghaert - ETHZ, Andrea F. Daniele - TTIC
 
-This section of the book will introduce the architecture API in Duckietown. The architecture API is a Docker module that will be running by default on any device in Duckietown. Through HTTP requests and JSON response messages, the system architecture of a fleet or single robot can be controlled and monitored.
+This section of the book will introduce the architecture API, i.e. a Docker module that will be running by default on any device in Duckietown. Through HTTP requests and JSON response messages, the system architecture of a fleet or single robot can be controlled and monitored using this module.
 
 A more detailed overview and design approach to the architecture API can be found in the respective [Design Document](https://ethidsc.atlassian.net/wiki/spaces/DS/pages/458719261/Design+Document+The+Architecture+API).
 
@@ -53,6 +53,11 @@ The architecture API resolves the complexity of this procedure by launching
 configurations using a single HTTP request only. Furthermore, it facilitates
 general fleet control from a designated main Duckietown device, e.g. a town for
 the *Town as a Robot* scenario.
+
+<figure id="town_scenario">
+    <figcaption>Systematic overview of the Town as a Robot scenario, controlling a fleet</figcaption>
+    <img alt="Town as a Robot scenario" style='width:32em' src="images/town_as_robot.png"/>
+</figure>
 
 The architecture API module thus partially replaces the Duckietown Shell, i.e. by
 launching various demos on a Duckietown device or Duckietown fleet in a more
