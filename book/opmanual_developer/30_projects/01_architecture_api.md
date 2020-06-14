@@ -2,21 +2,22 @@
 
 Author: Johannes Boghaert - ETHZ
 
-Maintainers: Johannes Boghaert - ETHZ
+Maintainer: Johannes Boghaert - ETHZ
 
 This section of the book will introduce the architecture API in Duckietown. The architecture API is a Docker module that will be running by default on any device in Duckietown. Through HTTP requests and JSON response messages, the system architecture of a fleet or single robot can be controlled and monitored.
 
-See also: a more detailed overview and design approach to the architecture API can be found in the respective [Design Document](https://ethidsc.atlassian.net/wiki/spaces/DS/pages/458719261/Design+Document+The+Architecture+API).
+A more detailed overview and design approach to the architecture API can be found in the respective [Design Document](https://ethidsc.atlassian.net/wiki/spaces/DS/pages/458719261/Design+Document+The+Architecture+API).
 
 <minitoc/>
 
 ## Introduction {#introduction-architecture-api}
 Before moving to the details of the architecture API, the following definitions
 and naming conventions should be familiarized by the reader:
-- module: a Docker container
+
+- module: a Docker container.
 - configuration: the system architecture (replacing demo and stack) of a device or fleet, could be lane-following, obstacle-avoidance, localization, etc.
-- robot: any Duckietown device
-- fleet: a series of Duckietown devices, not necessarily of the same type
+- robot: any Duckietown device.
+- fleet: a series of Duckietown devices, not necessarily of the same type.
 
 The architecture API is a module running on any Duckietown device (i.e. it is
 uniform in its design). The module uses the [DockerClient function](https://docker-py.readthedocs.io/en/stable/client.html) to manage the configuration of the host
@@ -28,7 +29,7 @@ approach and development choices are explained in more detail in the [Design Doc
 
 <figure id="single_overview">
     <figcaption>Systematic overview of the Architecture API functioning for single device control</figcaption>
-    <img alt="Architecture API for device control" style='width:20em' src="images/archapi.png"/>
+    <img alt="Architecture API for device control" style='width:32em' src="images/archapi.png"/>
 </figure>
 
 The above introduction on the API functioning allows us to expand from individual
@@ -39,10 +40,10 @@ the [Python request function](https://requests.readthedocs.io/en/master/).
 
 <figure id="multi_overview">
     <figcaption>Systematic overview of the Architecture API functioning for a fleet controlling main device</figcaption>
-    <img alt="Architecture API for fleet control" style='width:20em' src="images/multiarchapi.png"/>
+    <img alt="Architecture API for fleet control" style='width:32em' src="images/multiarchapi.png"/>
 </figure>
 
-## When to use {#when-to-use}
+## When to use the architecture API {#when-to-use}
 The architecture API can be used for the control and monitoring of the
 configuration of any number of robots of any robot type. Before June 2020, the
 *Duckietown Shell* was used to launch various demos such as lane_following and
@@ -76,10 +77,11 @@ The structure of a module file is as follows:
 version: '1'
 
 description: 'a brief description of what the module does'
-icon: an icon from [fontawesome](https://fontawesome.com/v4.7.0/icons/)
+icon: an icon from ![fontawesome.com]
 functionalities:
   - 'a list of functionalities of the module'
   - 'written as: the module ![name] allows you to ![functionality]'
+
 configuration:
   image: duckietown/dt-core:daffy-${ARCH-arm32v7}
   restart: unless-stopped
@@ -133,24 +135,13 @@ dependent entry for the `device-health` module, compatible with the
 `docker.containers.run()` function aforementioned.
 
 **Note:** It is not possible to have two different configurations running on a
-single device, nor is it possible to run more than one configuration on a single
-device type - and therefore device.
+single device, nor is it possible to run more than one configuration on a single device type - and therefore device.
 
 ### dt-commons {#library}
 
-**dt_arch_api_utils:**
-This library is part of the `dt-commons` [repository](https://github.com/duckietown/dt-commons/tree/ente) and contains
-the elementary functions for the single-device control part of the Architecture
-API. It consists of an `ArchitectureAPIClient` class which is used for the actual
-API to work, but does not provide the server itself or any DockerClient
-specification.
+- **dt_arch_api_utils:** this library is part of the `dt-commons` [repository](https://github.com/duckietown/dt-commons/tree/ente) and contains the elementary functions for the single-device control part of the architecture API. It consists of an `ArchitectureAPIClient` class which is used for the actual API to work, but does not provide the server itself or any DockerClient specification.
 
-**dt_multi_arch_api_utils:**
-The `MultiArchitectureAPIClient` class extends the functionalities of the
-`ArchitectureAPIClient` class to be able to communicate with multiple devices over
-the local network at virtually the same moment. It therefore is able to send out
-HTTP requests using Python functionalities, used to both activate configurations
-and monitor the status of these configurations on various devices.
+- **dt_multi_arch_api_utils:** the `MultiArchitectureAPIClient` class extends the functionalities of the `ArchitectureAPIClient` class to be able to communicate with multiple devices over the local network at virtually the same moment. It therefore is able to send out HTTP requests using Python functionalities, used to both activate configurations and monitor the status of these configurations on various devices.
 
 ### dt-architecture-api {#api}
 This module is built as a REST API and is responsible for reading the
@@ -172,30 +163,27 @@ As the architecture API is not yet included as default module on a Duckietown
 device, the architecture API can be build manually by following the next steps:
 
 ### Building the Python library {#build-lib}
-- Fork or clone the latest `duckietown/dt-commons` Github repository
-- Build the `dt-commons` module that includes the library on your device:
+Fork or clone the latest `duckietown/dt-commons` Github repository. Then build the `dt-commons` module that includes the library on your device:
 
     laptop $ dts devel build --arch arm32v7 -H ![HOSTNAME].local
 
 ### Building the architecture API module {#build-api}
-- Fork or clone the latest `duckietown/dt-architecture-api` Github repository
-- Build the architecture API on your device:
+Fork or clone the latest `duckietown/dt-architecture-api` Github repository. Then build the architecture API on your device:
 
     laptop $ dts devel build -f --arch arm32v7 -H ![HOSTNAME].local
 
-- Run the architecture API on your device:
+Now run the architecture API on your device:
 
     laptop $ docker -H ![HOSTNAME].local run -it --rm --network="host" -e DEBUG=1 -v /data:/data -v /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket -v /var/run/docker.sock:/var/run/docker.sock duckietown/dt-architecture-api:VERSION-arm32v7
 
-The module should start running in debug a.k.a. developer mode.
+The module should start running in debug (a.k.a. developer) mode.
 
 ### Controlling the Architecture API {#control-api}
 With a successful launch of the architecture API module and inclusion of the
 necessary libraries, the following HTTP template request can be entered in any
-browser followed by one of the endpoints found below, and will return a specific
-JSON response message:
+browser followed by one of the endpoints found below, and will return a specific JSON response message:
 
-    http:// ![HOSTNAME].local:8083 ![endpoint]
+    http:// ![HOSTNAME].local:8083![endpoint]
 
 <div figure-id="tab:api-endpoints-tab" markdown="1">
   <style>
@@ -214,37 +202,37 @@ JSON response message:
     <span>`/configuration/list`</span>
     <span>List possible configurations for the device in use</span>
     <span>`/device`</span>
-    <span>`/configuration/info/config`</span>
+    <span>`/configuration/info/<config>`</span>
     <span>Detailed information on a specific configuration</span>
     <span>`/device`</span>
-    <span>`/configuration/set/config`</span>
+    <span>`/configuration/set/<config>`</span>
     <span>Launch a specific configuration on the device in use</span>
     <span>`/device`</span>
     <span>`/module/list`</span>
     <span>List possible modules</span>
     <span>`/device`</span>
-    <span>`/module/info/mod`</span>
+    <span>`/module/info/<mod>`</span>
     <span>Detailed information on a specific module</span>
     <span>`/device`</span>
-    <span>`/monitor/ETag`</span>
+    <span>`/monitor/<ETag>`</span>
     <span>Monitor the progress of the request</span>
     <span>`/fleet`</span>
     <span>`/`</span>
-    <span>Default response for a fleet controlling main Duckietown device</span>
+    <span>Default response for a fleet controlling main device</span>
     <span>`/fleet`</span>
-    <span>`/configuration/list/fleet`</span>
+    <span>`/configuration/list/<fleet>`</span>
     <span>List possible configurations for the fleet and device in use</span>
     <span>`/fleet`</span>
-    <span>`/configuration/info/config`</span>
+    <span>`/configuration/info/<config>`</span>
     <span>Detailed information on a specific configuration for the fleet and device in use</span>
     <span>`/fleet`</span>
-    <span>`/configuration/set/config/fleet`</span>
+    <span>`/configuration/set/<config>/<fleet>`</span>
     <span>Launch a specific configuration on the fleet and device in use</span>
     <span>`/fleet`</span>
-    <span>`/monitor/ETag/fleet`</span>
+    <span>`/monitor/<ETag>/<fleet>`</span>
     <span>Monitor the progress of the request for fleet and device in use</span>
     <span>`/fleet`</span>
-    <span>`/info/fleet`</span>
+    <span>`/info/<fleet>`</span>
     <span>Information on the devices that are specified in the fleet file</span>
   </col3>
   <figcaption>Architecture API endpoints</figcaption>
