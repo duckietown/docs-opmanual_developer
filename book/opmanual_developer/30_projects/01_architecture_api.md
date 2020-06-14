@@ -2,7 +2,7 @@
 
 Author: Johannes Boghaert - ETHZ
 
-Maintainer: Johannes Boghaert - ETHZ
+Maintainer: Johannes Boghaert - ETHZ, Andrea F. Daniele - TTIC
 
 This section of the book will introduce the architecture API in Duckietown. The architecture API is a Docker module that will be running by default on any device in Duckietown. Through HTTP requests and JSON response messages, the system architecture of a fleet or single robot can be controlled and monitored.
 
@@ -14,10 +14,10 @@ A more detailed overview and design approach to the architecture API can be foun
 Before moving to the details of the architecture API, the following definitions
 and naming conventions should be familiarized by the reader:
 
-- module: a Docker container.
-- configuration: the system architecture (replacing demo and stack) of a device or fleet, could be lane-following, obstacle-avoidance, localization, etc.
-- robot: any Duckietown device.
-- fleet: a series of Duckietown devices, not necessarily of the same type.
+- **module:** a Docker container.
+- **configuration:** the system architecture (replacing demo and stack) of a device or fleet, could be lane-following, obstacle-avoidance, localization, etc.
+- **robot:** any Duckietown device.
+- **fleet:** a series of Duckietown devices, not necessarily of the same type.
 
 The architecture API is a module running on any Duckietown device (i.e. it is
 uniform in its design). The module uses the [DockerClient function](https://docker-py.readthedocs.io/en/stable/client.html) to manage the configuration of the host
@@ -64,9 +64,7 @@ the various modules and configurations that can be launched on a device. This
 allows the user to quickly modify any configuration file, while not being exposed
 to the code of the API itself. The various functions of the API are stored as a
 Python library in the [dt-commons repository](https://github.com/duckietown/dt-commons/tree/ente) for reusability and
-logic-decoupling purposes. This allows the [architecture API module](https://github.com/duckietown/dt-architecture-api) to be
-easily interpretable, only specifying the API communication details (e.g. port  
-or DockerClient).
+logic-decoupling purposes. This allows the [architecture API module](https://github.com/duckietown/dt-architecture-api) to be easily interpretable, only specifying the API communication details (e.g. port or DockerClient).
 
 ### dt-architecture-data {#database}
 This repository contains a [modules folder](https://github.com/duckietown/dt-architecture-data/tree/ente/modules) with configuration-
@@ -140,7 +138,6 @@ single device, nor is it possible to run more than one configuration on a single
 ### dt-commons {#library}
 
 - **dt_arch_api_utils:** this library is part of the `dt-commons` [repository](https://github.com/duckietown/dt-commons/tree/ente) and contains the elementary functions for the single-device control part of the architecture API. It consists of an `ArchitectureAPIClient` class which is used for the actual API to work, but does not provide the server itself or any DockerClient specification.
-
 - **dt_multi_arch_api_utils:** the `MultiArchitectureAPIClient` class extends the functionalities of the `ArchitectureAPIClient` class to be able to communicate with multiple devices over the local network at virtually the same moment. It therefore is able to send out HTTP requests using Python functionalities, used to both activate configurations and monitor the status of these configurations on various devices.
 
 ### dt-architecture-api {#api}
@@ -172,7 +169,7 @@ Fork or clone the latest `duckietown/dt-architecture-api` Github repository. The
 
     laptop $ dts devel build -f --arch arm32v7 -H ![HOSTNAME].local
 
-Now run the architecture API on your device:
+Now run the architecture API on your device using:
 
     laptop $ docker -H ![HOSTNAME].local run -it --rm --network="host" -e DEBUG=1 -v /data:/data -v /var/run/avahi-daemon/socket:/var/run/avahi-daemon/socket -v /var/run/docker.sock:/var/run/docker.sock duckietown/dt-architecture-api:VERSION-arm32v7
 
@@ -224,7 +221,7 @@ browser followed by one of the endpoints found below, and will return a specific
     <span>List possible configurations for the fleet and device in use</span>
     <span>`/fleet`</span>
     <span>`/configuration/info/![config]`</span>
-    <span>Detailed information on a specific configuration for the fleet and device in use</span>
+    <span>Detailed information on a specific configuration for entire fleet</span>
     <span>`/fleet`</span>
     <span>`/configuration/set/![config]/![fleet]`</span>
     <span>Launch a specific configuration on the fleet and device in use</span>
