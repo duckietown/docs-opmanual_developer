@@ -202,37 +202,37 @@ browser followed by one of the endpoints found below, and will return a specific
     <span>`/configuration/list`</span>
     <span>List possible configurations for the device in use</span>
     <span>`/device`</span>
-    <span>`/configuration/info/<config>`</span>
+    <span>`/configuration/info/![config]`</span>
     <span>Detailed information on a specific configuration</span>
     <span>`/device`</span>
-    <span>`/configuration/set/<config>`</span>
+    <span>`/configuration/set/![config]`</span>
     <span>Launch a specific configuration on the device in use</span>
     <span>`/device`</span>
     <span>`/module/list`</span>
     <span>List possible modules</span>
     <span>`/device`</span>
-    <span>`/module/info/<mod>`</span>
+    <span>`/module/info/![mod]`</span>
     <span>Detailed information on a specific module</span>
     <span>`/device`</span>
-    <span>`/monitor/<ETag>`</span>
+    <span>`/monitor/![ETag]`</span>
     <span>Monitor the progress of the request</span>
     <span>`/fleet`</span>
     <span>`/`</span>
     <span>Default response for a fleet controlling main device</span>
     <span>`/fleet`</span>
-    <span>`/configuration/list/<fleet>`</span>
+    <span>`/configuration/list/![fleet]`</span>
     <span>List possible configurations for the fleet and device in use</span>
     <span>`/fleet`</span>
-    <span>`/configuration/info/<config>`</span>
+    <span>`/configuration/info/![config]`</span>
     <span>Detailed information on a specific configuration for the fleet and device in use</span>
     <span>`/fleet`</span>
-    <span>`/configuration/set/<config>/<fleet>`</span>
+    <span>`/configuration/set/![config]/![fleet]`</span>
     <span>Launch a specific configuration on the fleet and device in use</span>
     <span>`/fleet`</span>
-    <span>`/monitor/<ETag>/<fleet>`</span>
+    <span>`/monitor/![ETag]/![fleet]`</span>
     <span>Monitor the progress of the request for fleet and device in use</span>
     <span>`/fleet`</span>
-    <span>`/info/<fleet>`</span>
+    <span>`/info/![fleet]`</span>
     <span>Information on the devices that are specified in the fleet file</span>
   </col3>
   <figcaption>Architecture API endpoints</figcaption>
