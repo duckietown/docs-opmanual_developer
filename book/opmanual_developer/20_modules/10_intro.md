@@ -1,4 +1,4 @@
-# Introduction {#sec:devel_modules_intro level=sec status=draft}
+# Introduction {#sec:devel_modules_intro level=sec status=ready}
 
 Author: Andrea F. Daniele
 
