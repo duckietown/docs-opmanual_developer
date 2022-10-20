@@ -5,6 +5,8 @@ Author: Andrea F. Daniele
 Maintainer: Andrea F. Daniele
 
 
+
+
 A software module in Duckietown implements a high level behavior, for example,
 autonomous driving in Duckietown. A software module is broken into a set of smaller
 pieces, called nodes. This allows us to tackle a complex problem by leveraging solutions
@@ -21,22 +23,29 @@ to learn more about product quality in software engineering. If you want to beco
 a developer, you might want to bookmark that URL, you will need it, **a lot**. 
 
 
+
 <minitoc/>
 
 
 ## What is a module
+
+
 
 A module in Duckietown is a Docker image that complies with a **module template**
 (more about templates in the next section). Remember the 
 [ISO/IEC 9126](#sec:developer_basics_iso_9126) standard? well, 
 modules are designed to be highly **portable** and  **usable**.
 
+
 Modules have a pre-defined file system structure with fixed locations for source code 
 and configuration files. File system structure and default locations are 
-template-dependent, check the section [](#devel_types_of_modules) to understand the
+template-dependent, check the section **TBD** to understand the
 different module templates available in Duckietown.
 
+
 Understanding the pros and cons of using Docker to isolate modules right now is crucial.
+
+
 
 Bad news first! The biggest negative effect of using Docker to isolate modules
 is that by doing so, we are wrapping our source code inside a Docker image. This
@@ -50,9 +59,10 @@ in the book.
 As for the good news, i.e., why using Docker to isolate modules makes sense and our
 life easier, we could write a book about it, but they will become clear as we proceed.
 
+
+
 Duckietown defines a set of module types that you can choose from. The list of module
-types and their differences will be the topic of the section 
-[](#sec:developer_module_types). What is important to know for now, is that a module
+types and their differences will be the topic of the section  **TBD**. What is important to know for now, is that a module
 type defines the environment your code will run in. For each module type, a template
 repository is provided.
 
@@ -80,7 +90,10 @@ this section, we can use any template for the remainder of this section, we sugg
 using the one above.
 
 
+
 ## Create your own module {#devel_create_module_repo}
+
+
 
 In order to be able to create a Duckietown module, you need to gain access to
 the module template repositories on GitHub.
@@ -100,6 +113,8 @@ and click on the Fork button at the top-right corner of the page.
 </figure>
 
 
+
+
 Once you gained access to the template (either by joining the Duckietown developers
 team or forking the template repository), you are able to create a new repository that
 will store your module based on the template repository.
@@ -115,13 +130,13 @@ and then choose **New repository**. In the _New repository_ page, choose the tem
 </figure>
 
 <br/>
-Click on **Create repository** to create the module repository.
 
+Click on **Create repository** to create the module repository.
 
 ## Build a module
 
 Building a module is very simple. To start, open a terminal and clone a module repository 
-(we created one in section [](#devel_create_module_repo)).
+(we created one in section **TODO** ).
 
 Templates leave placeholders that you will need to replace with the proper information
 about your module before you can build it.
@@ -129,11 +144,16 @@ about your module before you can build it.
 Open the file `Dockerfile` using any text editor and look for the following lines
 at the top of the file:
 
-```dockerfile
+**TODO**
+
+<!---
+```
+dockerfile
 ARG REPO_NAME="<REPO_NAME_HERE>"
 ARG DESCRIPTION="<DESCRIPTION_HERE>"
 ARG MAINTAINER="<YOUR_FULL_NAME> (<YOUR_EMAIL_ADDRESS>)"
 ```
+-->
 
 Replace the placeholders strings with, respectively,
  - the name of the repository (i.e., `my_module`); 
@@ -157,7 +177,10 @@ If the build is successful, you will see something like the following.
     <img alt="dts devel build" style='width:36em' src="images/dts_devel_build_ex1.jpg"/>
 </figure>
 
+<br/>
+
 Congrats! You just built your first Duckietown-compatible software module.
+
 
 
 ## Run a module
@@ -182,4 +205,6 @@ TODO: This is a templated subsection
 ## Ask the community
 
 TODO: This is a templated subsection
+
+
 
