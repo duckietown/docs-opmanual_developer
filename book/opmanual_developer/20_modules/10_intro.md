@@ -205,6 +205,3 @@ TODO: This is a templated subsection
 ## Ask the community
 
 TODO: This is a templated subsection
-
-
-
