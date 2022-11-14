@@ -9,19 +9,19 @@ The `![DT_APP_SECRET]` and `![APP_ID]` can be retrieved by either asking via the
 ### Saving data locally
 In order to start the API which saves data on your local machine use the following command: 
 
-    laptop $ docker run -v ![/PATH/TO/DATA/DIR/]:/data/ -it -e LOCAL=True -p 5000:5000 -e APP_SECRET=![DT_APP_SECRET] -e APP_ID=![APP_ID] --rm duckietown/dt-hardware-benchmark-backend:daffy-amd64
+    laptop $ docker run -v ![/PATH/TO/DATA/DIR/]:/data/ -it -e LOCAL=True -p 5000:5000 -e APP_SECRET=![DT_APP_SECRET] -e APP_ID=![APP_ID] --rm duckietown/dt-hardware-benchmark-backend:daffy
 
 ### Saving data online
 **Careful the API address in the frontend is hardcoded and thus needs to be adjusted**
 
 In order to start the API which saves data on S3 and a MySQL database use the following command: 
 
-    laptop $ docker run -dit -p 5000:5000 -e MYSQL_USER=![DB_USER] -e MYSQL_PW=![DB_PW] -e MYSQL_URL=![DB_URL] -e MYSQL_DB=![DB_NAME] -e AWS_SECRET_ACCESS_KEY=![AWS_SECRET_ACCESS_KEY] -e AWS_ACCESS_KEY_ID=![AWS_ACCESS_KEY_ID] -e APP_SECRET=![DT_APP_SECRET] -e APP_ID=![APP_ID]--rm duckietown/dt-hardware-benchmark-backend:daffy-amd64
+    laptop $ docker run -dit -p 5000:5000 -e MYSQL_USER=![DB_USER] -e MYSQL_PW=![DB_PW] -e MYSQL_URL=![DB_URL] -e MYSQL_DB=![DB_NAME] -e AWS_SECRET_ACCESS_KEY=![AWS_SECRET_ACCESS_KEY] -e AWS_ACCESS_KEY_ID=![AWS_ACCESS_KEY_ID] -e APP_SECRET=![DT_APP_SECRET] -e APP_ID=![APP_ID]--rm duckietown/dt-hardware-benchmark-backend:daffy
 
 ## Start the Frontend
 **Adjust the API address if wanted to run online** 
 
-    laptop $ docker run -it -p 3000:80 --rm duckietown/dt-hardware-benchmark-frontend:daffy-amd64
+    laptop $ docker run -it -p 3000:80 --rm duckietown/dt-hardware-benchmark-frontend:daffy
 
 It then is reachable under `localhost:3000`
 ## Run the benchmark
